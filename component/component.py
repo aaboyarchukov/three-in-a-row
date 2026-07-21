@@ -4,4 +4,13 @@ class Component():
     
     # commands
     
+    # после генерации компоненты добавляются в очередь, оттуда на доску
+    def add_to_queue():
+        pass
+    
     # requests
+    
+    # генерирует последовательность из компонентов
+    def generate_sequence():
+        pass
+    

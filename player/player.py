@@ -3,5 +3,7 @@ class Player():
         self.board_matrix = None
     
     # commands
+    def move(self):
+        pass
     
     # requests
