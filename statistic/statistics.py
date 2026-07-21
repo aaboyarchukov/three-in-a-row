@@ -1,32 +1,31 @@
-class Statistics():
+from any import Any
+
+class Statistics(Any):
+    # constructor
     def __init__(self):
-        self.board_matrix = None
+        self.moves = 0
+        self.total_points = 0
     
     # commands
 
-    # pre-cond:
-    # post-cond:
+    # post-cond: points are increased
     def update_points(self):
         pass
     
-    # pre-cond:
-    # post-cond:
+    # post-cond: amount of moves are increased
     def update_moves_amount(self):
         pass
 
     # requests
 
-    # pre-cond:
-    # post-cond:
-    def get_points(self):
+    # post-cond: get actual points
+    def get_points(self) -> int:
         pass
     
-    # pre-cond:
-    # post-cond:
-    def get_amount_moves(self):
+    # post-cond: get actual amount of moves
+    def get_amount_moves(self) -> int:
         pass
     
-    # pre-cond:
-    # post-cond:
-    def get_final_result(self):
+    # post-cond: get pretty result
+    def get_final_result(self) -> str:
         pass
