@@ -9,6 +9,14 @@ class Board(Any):
     
     # commands
     
+    # pre-cond:
+    #   - board_matrix is not empty 
+    #   - on board exists valid sequence
+    #   - coordinates of components in move are in range of matrix
+    # post-cond: components have moved at board
+    def move(self):
+        pass
+
     # заполняет опустевшие клетки, если комбинации собираются
     # pre-cond:
     #   - board_matrix is not empty 
