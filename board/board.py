@@ -4,8 +4,8 @@ from any import Any
 class Board(Any):
     # constructor
     def __init__(self, generator: Generator):
-        self.board_matrix = None
         self.generator = generator
+        self.board_matrix = None
     
     # commands
     
