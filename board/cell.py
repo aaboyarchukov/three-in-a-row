@@ -7,5 +7,12 @@ class Cell(Any):
         self.x = x
         self.y = y
         self.component = component
-        self.to_delete_state = False
+        self.TO_DELETE_STATE = False
+
+    # commands
+    def set_to_delete(self):
+        pass
+    # requests
+    def get_delete_state(self) -> bool:
+        return self.TO_DELETE_STATE
     

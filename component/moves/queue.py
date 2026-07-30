@@ -1,0 +1,3 @@
+
+class MovesQueue():
+    pass

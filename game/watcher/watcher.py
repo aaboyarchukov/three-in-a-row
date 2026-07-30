@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from subscriber import Subscriber
+from game.watcher.subscriber import Subscriber
 
 class Watcher(ABC):
     
