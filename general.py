@@ -1,7 +1,7 @@
 from typing import TypeVar
 from copy import deepcopy
 import pickle
-from typing import Final
+from typing import final
 
 T = TypeVar('T', covariant=True)
 
@@ -21,7 +21,7 @@ class General(object):
         self._copy_status = self.COPY_NIL
 
     # commands:
-    @Final
+    @final
     def copy_to(self, other: T) -> None:
         """Deep-copy of attributes of **self** to **other** with
         ignoring status-attributes."""
@@ -40,33 +40,32 @@ class General(object):
         self._copy_status = self.COPY_OK
 
     # requests:
-    @Final
+    @final
     def __eq__(self, other: T) -> bool:
         return self.__dict__ == other.__dict__
 
-    @Final
+    @final
     def __repr__(self) -> str:
-        s = f'<"{self.__class__.__name__}" instance' \
-            f' (id={id(self)})>'
-        return s
+        fields = ", ".join(f"{k}={v!r}" for k, v in vars(self).items())
+        return f"{self.__class__.__name__}({fields})"
 
-    @Final
+    @final
     def clone(self) -> T:
         clone = deepcopy(self)
         return clone
 
-    @Final
+    @final
     def serialize(self) -> bytes:
         bs = pickle.dumps(self)
         return bs
-    @Final
+    @final
     @classmethod
     def deserialize(cls, bs: bytes) -> T:
         instance = pickle.loads(bs)
         return instance
 
     # method statuses requests:
-    @Final
+    @final
     def get_copy_status(self) -> int:
         """Return status of last copy_to() call:
         one of the COPY_* constants."""
