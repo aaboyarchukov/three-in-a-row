@@ -14,4 +14,7 @@ class Player(Any):
     def move(self):
         pass
 
+    def end_game(self):
+        pass
+
     # requests
