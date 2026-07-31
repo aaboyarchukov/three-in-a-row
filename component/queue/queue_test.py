@@ -1,6 +1,5 @@
 import unittest
 from component.queue.queue import ComponentQueue
-from board.generator.generator import Generator
 from component.set.component_set import ComponentSet
 
 import random

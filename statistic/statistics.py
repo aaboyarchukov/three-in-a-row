@@ -16,6 +16,12 @@ class Statistics(Any):
     def update_moves_amount(self):
         pass
 
+    def show_interim_results(self):
+        print(self.get_interim_result())
+
+    def show_final_results(self):
+        print(self.get_final_result())
+
     # requests
 
     # post-cond: get actual points
@@ -29,3 +35,10 @@ class Statistics(Any):
     # post-cond: get pretty result
     def get_final_result(self) -> str:
         pass
+
+    # post-cond: get intermediate result
+    def get_interim_result(self) -> str:
+        points = self.total_points
+        moves = self.moves
+
+        return f'current points: {points} \ncurrent moves: {moves}'

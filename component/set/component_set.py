@@ -10,7 +10,7 @@ class ComponentSet(Any):
     # льготный класс содержит набор из доступных компонентов
     # чем меньше набор, тем чаще будут попадаться повторы
     components = ["😀", "🎉", "🚀", "🌸", "🐱", "🍕", "⚡", "🌙"]
-    delete_component = "⛔"
+    delete_component = Component("⛔")
 
     # pre-cond: components are not empty
     # post-cond: return on of components

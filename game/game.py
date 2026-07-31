@@ -12,7 +12,7 @@ class Game(Any):
         self.player = player
         self.points_to_win = points_to_win
 
-        self.GAME_ENDING_STATE = False
+        self.__GAME_ENDING_STATE = False
     
     # commands
     # pre-cond: game is not ending yet
@@ -35,7 +35,11 @@ class Game(Any):
     # post-cond: game ending
     def processing_game(self):
         # show matrix
+        self.cli_manager.show_board()
+
         # show stats
+        self.statistics.show_interim_results()
+
         first_cell, second_cell = self.cli_manager.get_player_move()
 
         self.player.move(first_cell, second_cell)
@@ -47,4 +51,4 @@ class Game(Any):
 
     # requests
     def get_game_ending_state(self) -> bool:
-        return self.GAME_ENDING_STATE
+        return self.__GAME_ENDING_STATE

@@ -1,7 +1,7 @@
-from generator.generator import Generator
+from board.generator.generator import Generator
 from any import Any
-from cell import Cell
-from matrix import Matrix
+from board.cell import Cell
+from board.matrix import Matrix
 
 class Board(Any):
     # constructor
@@ -28,16 +28,19 @@ class Board(Any):
     #   - coordinates of components in move are in range of matrix
     # post-cond: components have moved at board
     def move(self, first_cell: Cell, second_cell: Cell):
-        not_valid_move = self.__is_valid_move(first_cell, second_cell)
-        if not_valid_move:
+        valid_sequence = self.__valid_sequence(first_cell, second_cell)
+        if valid_sequence == []:
             self.__IS_MOVING_STATE = -1
             return
 
-        
-
         # push to suscribe that we are get points for move
-
+        self.board_matrix.move(first_cell, second_cell)
         self.__IS_MOVING_STATE = 1
+
+        self.delete_sequence(valid_sequence)
+        self.shift_down()
+
+        
 
     # заполняет опустевшие клетки, если комбинации собираются
     # pre-cond:
@@ -48,9 +51,9 @@ class Board(Any):
         not_empty_cells = self.IS_EMPTY_CELLS_STATE == False
         if not_empty_cells:
             return
-        # if scan_on_valid_sequence is true
-            # then fill
         # processing
+        self.board_matrix.collapse_grid()
+
         self.IS_EMPTY_CELLS_STATE = False
     
     # pre-cond: 
@@ -65,7 +68,9 @@ class Board(Any):
         is_empty = self.BOARD_FILL_STATE == False
         if is_empty:
             return
+        
         # after move -> delete sequence
+        self.board_matrix.remove_sequence(sequence)
         self.IS_EMPTY_CELLS_STATE = True
 
     # pre-cond: board_matrix is empty
@@ -75,7 +80,8 @@ class Board(Any):
         if is_board_filled:
             return
 
-        self.board_matrix.fill_all()
+        sequence = self.generator.generate()
+        self.board_matrix.fill_all(sequence)
 
         self.BOARD_FILL_STATE = True
 
@@ -83,21 +89,9 @@ class Board(Any):
     
     # pre-cond: board_matrix is not empty
     # post-cond: move has been checked for validation    
-    def __is_valid_move(self, first_cell, second_cell) -> bool:
-        pass
-
-    # pre-cond: board_matrix is not empty 
-    # post-cond: has found at least one valid sequence OR hasn't found either
-    def scan_on_valid_sequence(self) -> bool:
-        pass
-
-    # pre-cond: 
-    #   - board_matrix is not empty
-    #   - sequence is not empty
-    # post-cond: sequence has scaned and it's valid or not valid
-    def is_valid_sequence(self, sequence: list[Cell]) -> bool:
-        pass
-
+    def __valid_sequence(self, first_cell: Cell, second_cell: Cell) -> list[Cell]:
+        return self.board_matrix.valid_sequence(first_cell, second_cell)
+    
     # pre-cond: board_matrix is not generated 
     # post-cond: board_matrix is generated
     def generate(self):
@@ -115,3 +109,6 @@ class Board(Any):
         # 1 - sucess
         # -1 - failed
         return self.__IS_MOVING_STATE
+
+    def get_matrix(self) -> Matrix:
+        return self.board_matrix

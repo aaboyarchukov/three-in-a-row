@@ -2,11 +2,22 @@ from any import Any
 from component.set.component_set import ComponentSet
 from component.component import Component
 from component.null_component import NullComponent
+from board.generator.generator import Generator
 
 class ComponentQueue(Any):
     # constructor
     def __init__(self):
         self.queue: list[Component] = []
+
+        self.__generator = Generator(
+                        component_set=ComponentSet()
+                    )
+
+        sequence = self.__generator.generate()
+
+        for cell in sequence:
+            component = cell.get_component()
+            self.queue.append(component)
 
         # 0 - failed
         # 1 - success
@@ -34,6 +45,13 @@ class ComponentQueue(Any):
             return NullComponent(value="")
         
         return self.queue.pop(0)
+
+    def fill_queue(self):
+        amount_components = 3
+        components = self.__generator.generate(amount_components)
+
+        for component in components:
+            self.add(component)
 
     # return queue len
     def len(self):

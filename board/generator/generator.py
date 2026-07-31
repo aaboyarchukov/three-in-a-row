@@ -1,6 +1,5 @@
 from any import Any
 from component.set.component_set import ComponentSet
-from component.component import Component
 from board.cell import Cell
 
 class Generator(Any):
@@ -19,12 +18,12 @@ class Generator(Any):
     #   - size is set
     #   - component_set is not empty
     # post-cond: matrix of component are generated
-    def generate(self) -> list[Cell]:
+    def generate(self, size = 8) -> list[Cell]:
         # generate components
         result: list[Cell] = []
 
-        for i in range(self.size):
-            for j in range(self.size):
+        for i in range(size):
+            for j in range(size):
                 random_component = self.component_set.random_component()
 
                 result.append(Cell(i, j, random_component))

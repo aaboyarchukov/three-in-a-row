@@ -1,12 +1,14 @@
 from any import Any
+from board.board import Board
 
 class CLI_Manager(Any):
     def __init__(self):
         pass
 
     # commands
-    def show_board(self):
-        pass
+    def show_board(self, board: Board):
+        matrix = board.get_matrix()
+        print(matrix)
 
     # requests
     def get_player_move(self) -> list:
