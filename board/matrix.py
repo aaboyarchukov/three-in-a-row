@@ -11,10 +11,10 @@ class Matrix(Any):
     # construstor
     def __init__(self, size = 8):
         self.__size = size
-        self.array = [Cell] * (size**2)
+        self.array = [None] * (size**2)
         self.components_queue = ComponentQueue()
 
-        self.EMPTY_METRIX_STATE = True
+        self.EMPTY_MATRIX_STATE = True
         self.EMPTY_MATRIX_CELLS_STATE = True
 
         # 0 - init
@@ -59,14 +59,14 @@ class Matrix(Any):
         if len(arrange_component) == 0:
             return
         
-        not_empty = self.EMPTY_METRIX_STATE != True
+        not_empty = self.EMPTY_MATRIX_STATE != True
         if not_empty:
             return
         
         for i in range(len(self.array)):
             self.array[i] = arrange_component[i]
 
-        self.EMPTY_METRIX_STATE = False
+        self.EMPTY_MATRIX_STATE = False
 
     # pre-cond: array is not empty
     # post-cond: cells have chnged position
@@ -80,6 +80,8 @@ class Matrix(Any):
     def remove_sequence(self, sequence: list[Cell]):
         for cell in sequence:
             cell.set_to_delete()
+
+        self.REMOVE_SEQUENCE_STATUS = 1
 
     # pre-cond:
     #   - array is not empty
@@ -149,6 +151,7 @@ class Matrix(Any):
     # pre-cond: array is not empty
     # post-cond: have found sequence of cells
     def valid_sequence(self, first_cell: Cell, second_cell: Cell) -> list[Cell]:
+        self.ROLLBACK_STATUS = 0
         self.move(first_cell, second_cell)
 
         first_cell_y = first_cell.get_y()
