@@ -42,6 +42,8 @@ class General(object):
     # requests:
     @final
     def __eq__(self, other: T) -> bool:
+        if type(self) is not type(other):
+            return NotImplemented
         return self.__dict__ == other.__dict__
 
     @final

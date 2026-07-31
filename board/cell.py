@@ -10,8 +10,11 @@ class Cell(Any):
         self.TO_DELETE_STATE = False
 
     # commands
+    # pre-cond: cell is not ready to deleted yet
+    # post-cond: cell is ready to deleted
     def set_to_delete(self):
         pass
+
     # requests
     def get_delete_state(self) -> bool:
         return self.TO_DELETE_STATE

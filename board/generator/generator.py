@@ -1,5 +1,6 @@
 from any import Any
 from component.set.component_set import ComponentSet
+from component.component import Component
 from board.cell import Cell
 
 class Generator(Any):

@@ -1,11 +1,11 @@
 import unittest
 from board.generator.generator import Generator
-from component.set.component_set import ComponentSet
+from component.component import ComponentSet
 import random
 
-class TestGenerator(unittest.TestCase):
+class TestMatrix(unittest.TestCase):
 
-    def test_generate_components(self):
+    def test_fill_all(self):
         component_set = ComponentSet()
         amount_tests = 2
 

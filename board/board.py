@@ -11,7 +11,12 @@ class Board(Any):
 
         self.BOARD_FILL_STATE = False
         self.BOARD_GENERATED_STATE = False
-        self.IS_MOVING_STATE = False
+
+        # 0 - init
+        # 1 - sucess
+        # -1 - failed
+        self.__IS_MOVING_STATE = 0
+
         self.IS_EMPTY_CELLS_STATE = False
         
     
@@ -23,12 +28,16 @@ class Board(Any):
     #   - coordinates of components in move are in range of matrix
     # post-cond: components have moved at board
     def move(self, first_cell: Cell, second_cell: Cell):
-        self.IS_MOVING_STATE = True
-        # processing
+        not_valid_move = self.__is_valid_move(first_cell, second_cell)
+        if not_valid_move:
+            self.__IS_MOVING_STATE = -1
+            return
+
+        
 
         # push to suscribe that we are get points for move
 
-        self.IS_MOVING_STATE = False
+        self.__IS_MOVING_STATE = 1
 
     # заполняет опустевшие клетки, если комбинации собираются
     # pre-cond:
@@ -74,7 +83,7 @@ class Board(Any):
     
     # pre-cond: board_matrix is not empty
     # post-cond: move has been checked for validation    
-    def is_valid_move(self, first_cell, second_cell) -> bool:
+    def __is_valid_move(self, first_cell, second_cell) -> bool:
         pass
 
     # pre-cond: board_matrix is not empty 
@@ -100,3 +109,9 @@ class Board(Any):
         self.fill(sequence)
 
         self.BOARD_GENERATED_STATE = True
+
+    def get_moving_state(self) -> int:
+        # 0 - init
+        # 1 - sucess
+        # -1 - failed
+        return self.__IS_MOVING_STATE

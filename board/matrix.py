@@ -12,13 +12,20 @@ class Matrix(Any):
 
     # commands
     
-    # pre-cond: base array not null
+    # pre-cond: 
+    #   - base array not null
+    #   - arrange components not null
     # post-cond: base array has been filling
     def fill_all(self, arrange_component: list[Cell]):
+        if len(arrange_component) == 0:
+            return
+        
         not_empty = self.EMPTY_METRIX_STATE != True
         if not_empty:
             return
-        # processing
+        
+        for i in range(len(self.array)):
+            self.array[i] = arrange_component[i]
 
         self.EMPTY_METRIX_STATE = False
 

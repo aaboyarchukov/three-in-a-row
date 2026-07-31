@@ -1,17 +1,15 @@
 from any import Any
 from player.player import Player
-from board.board import Board
 from statistic.statistics import Statistics
 from cli.manager import CLI_Manager
 
 class Game(Any):
     # constructor
-    def __init__(self, player: Player, board: Board, points_to_win: int):
+    def __init__(self, player: Player, points_to_win: int):
         self.statistics = Statistics()
         self.cli_manager = CLI_Manager()
 
         self.player = player
-        self.board = board
         self.points_to_win = points_to_win
 
         self.GAME_ENDING_STATE = False
@@ -36,12 +34,9 @@ class Game(Any):
     #   - dependecies are init
     # post-cond: game ending
     def processing_game(self):
+        # show matrix
+        # show stats
         first_cell, second_cell = self.cli_manager.get_player_move()
-        
-        valid_move = self.board.is_valid_move(first_cell, second_cell)
-
-        while not valid_move:
-            first_cell, second_cell = self.cli_manager.get_player_move()
 
         self.player.move(first_cell, second_cell)
 
