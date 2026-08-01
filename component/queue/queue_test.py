@@ -8,6 +8,7 @@ class TestComponentQueue(unittest.TestCase):
 
     def test_add(self):
         queue = ComponentQueue()
+        queue.queue.clear()
         component_set = ComponentSet()
 
         cases = random.randint(1, 10)
@@ -28,6 +29,7 @@ class TestComponentQueue(unittest.TestCase):
 
     def test_pop(self):
         queue = ComponentQueue()
+        queue.queue.clear()
         component_set = ComponentSet()
 
         cases = random.randint(1, 10)
@@ -38,11 +40,12 @@ class TestComponentQueue(unittest.TestCase):
 
             top = queue.pop()
 
-            self.assertEqual(top.value, component.value, "Pop сработал некорректно, значения неверны")
+            self.assertEqual(top.get_value(), component.get_value(), "Pop сработал некорректно, значения неверны")
             self.assertEqual(queue.len(), 0, "Pop сработал некорректно, элемент не удален")
 
     def test_pop_many(self):
         queue = ComponentQueue()
+        queue.queue.clear()
         component_set = ComponentSet()
 
         components = component_set.generate_sequence()

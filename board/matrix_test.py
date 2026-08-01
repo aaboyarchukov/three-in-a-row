@@ -15,8 +15,7 @@ class TestMatrix(unittest.TestCase):
             size = i * random.randint(i, amount_tests+i)
 
             generator = Generator(component_set, size)
-            matrix = generator.generate()
-
+            matrix = generator.generate(size)
             
             self.assertNotEqual(len(matrix), 0, "Сгенирирована пустая матрица")
             self.assertEqual(len(matrix), size**2, "Длина матрицы некорректна")
@@ -46,7 +45,7 @@ class TestMatrix(unittest.TestCase):
             first_component_before = first_cell.get_component()
             second_component_before = second_cell.get_component()
 
-            board.move(first_cell, second_cell)
+            board_matrix.move(first_cell, second_cell)
 
             self.assertIs(board_matrix.array[indx], first_cell)
             self.assertIs(board_matrix.array[indx - 1], second_cell)

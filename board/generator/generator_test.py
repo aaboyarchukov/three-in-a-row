@@ -13,8 +13,7 @@ class TestGenerator(unittest.TestCase):
             size = i * random.randint(i, amount_tests+i)
 
             generator = Generator(component_set, size)
-            matrix = generator.generate()
-
+            matrix = generator.generate(size)
             
             self.assertNotEqual(len(matrix), 0, "Сгенирирована пустая матрица")
             self.assertEqual(len(matrix), size**2, "Длина матрицы некорректна")

@@ -28,7 +28,7 @@ class ComponentSet(Any):
         sequence: list[Component] = []
 
         for _ in range(size):
-            value = self.random_component()
-            sequence.append(Component(value))
+            component = self.random_component()
+            sequence.append(component)
 
         return  sequence
