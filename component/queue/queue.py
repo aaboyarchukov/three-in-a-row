@@ -36,14 +36,10 @@ class ComponentQueue(Any):
     #   - success add component
     # post-cond: size of queue decreased and we get head of list
     def pop(self) -> Component:
-        unsuccess_add = self.ADD_STATE != 1
-        if unsuccess_add:
-            return NullComponent(value="")
-
         empty_queue = self.len() == 0
         if empty_queue:
             return NullComponent(value="")
-        
+
         return self.queue.pop(0)
 
     def fill_queue(self):

@@ -13,10 +13,13 @@ class Player(Any):
     #   - coordinates of components in move are in range of matrix
     # post-cond: components have moved at board
     def move(self, first_cell: Cell, second_cell: Cell):
-        while self.board.get_moving_state() != 1:
-            self.board.move(first_cell, second_cell)
+        self.board.move(first_cell, second_cell)
 
     def end_game(self):
         pass
 
+
     # requests
+    
+    def get_board(self) -> Board:
+        return self.board

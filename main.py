@@ -12,6 +12,8 @@ def main():
     )
     board = Board(generator)
 
+    board.fill()
+
     player = Player(board)
 
     game = Game(player, points_to_win)
@@ -19,5 +21,5 @@ def main():
     game.start_game()
 
 
-if __file__ == "__main__":
+if __name__ == "__main__":
     main()

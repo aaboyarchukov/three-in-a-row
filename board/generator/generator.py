@@ -22,10 +22,10 @@ class Generator(Any):
         # generate components
         result: list[Cell] = []
 
-        for i in range(size):
-            for j in range(size):
+        for y in range(size):
+            for x in range(size):
                 random_component = self.component_set.random_component()
 
-                result.append(Cell(i, j, random_component))
+                result.append(Cell(x, y, random_component))
 
         return result

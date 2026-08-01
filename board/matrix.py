@@ -183,3 +183,11 @@ class Matrix(Any):
     
     def get_column(self, x: int) -> list[Cell]:
         return [self.array[y * self.__size + x] for y in range(self.__size)]
+
+    def get_size(self) -> int:
+        return self.__size
+
+    def get_cell(self, x: int, y: int) -> Cell:
+        valid_range = x >= 0 and x < self.__size and y >= 0 and y < self.__size
+
+        return self.array[y * self.__size + x] if valid_range else None

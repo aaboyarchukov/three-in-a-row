@@ -104,6 +104,11 @@ class Board(Any):
 
         self.BOARD_GENERATED_STATE = True
 
+    # pre-cond: board_matrix is not empty
+    # post-cond: moving state reset to init (0)
+    def reset_moving_state(self):
+        self.__IS_MOVING_STATE = 0
+
     def get_moving_state(self) -> int:
         # 0 - init
         # 1 - sucess
